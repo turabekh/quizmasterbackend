@@ -66,6 +66,7 @@ class QuizAttemptAdmin(admin.ModelAdmin):
     list_display = ('student', 'quiz', 'score', 'attempt_time')
     list_filter = ('student', 'quiz')
 
+
 class QuestionFeedbackAdmin(admin.ModelAdmin):
     list_display = ('question', 'student', 'text')
     list_filter = ('question', 'student')

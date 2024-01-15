@@ -151,7 +151,7 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", '')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 EMAIL_HOST_USER = "turabekh@gmail.com"
-FRONTEND_DOMAIN = "localhost:3000"
+FRONTEND_DOMAIN = "quizmasterfrontend.vercel.app"
 
 # LOGGING = {
 #     'version': 1,
