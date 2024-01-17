@@ -1,8 +1,12 @@
-from rest_framework import status, views, permissions
+from rest_framework import (
+    status, views, 
+    permissions, generics
+)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from common.utils.tokens import TokenUtil
+from .models import StudentGroup
 from .serializers import (
     UserRegistrationSerializer,
     UserLoginSerializer,
@@ -10,6 +14,7 @@ from .serializers import (
     PasswordResetSerializer,
     PasswordResetConfirmSerializer,
     UserProfileSerializer,
+    StudentGroupSerializer,
 )
 
 class UserRegistrationView(APIView):
@@ -73,3 +78,8 @@ class PasswordResetConfirmView(APIView):
             serializer.save()
             return Response({"message": "Password has been reset successfully."}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class StudentGroupListView(generics.ListAPIView):
+    queryset = StudentGroup.objects.all()
+    serializer_class = StudentGroupSerializer
+    permission_classes = (permissions.AllowAny,)

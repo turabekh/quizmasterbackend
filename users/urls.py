@@ -6,6 +6,7 @@ from .views import (
     PasswordResetView,
     PasswordResetConfirmView,
     UserProfileView,
+    StudentGroupListView
 )
 
 urlpatterns = [
@@ -16,4 +17,5 @@ urlpatterns = [
     path('password-reset/', PasswordResetView.as_view(), name='password_reset'),
     path('password-reset-confirm/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('profile/', UserProfileView.as_view(), name='user_profile'),
+    path('student-groups/', StudentGroupListView.as_view(), name='student_groups'),
 ]

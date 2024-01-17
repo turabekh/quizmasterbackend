@@ -8,6 +8,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.utils.encoding import force_str, force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from rest_framework import serializers
+from .models import StudentGroup
 
 
 User = get_user_model()
@@ -136,3 +137,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'first_name', 'last_name', 'group']
+
+class StudentGroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentGroup
+        fields = ['id', 'group_name']

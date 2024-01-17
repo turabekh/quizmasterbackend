@@ -1,4 +1,7 @@
+from typing import Any
 from django.contrib import admin
+from django.db.models.query import QuerySet
+from django.http.request import HttpRequest
 from django.utils.html import format_html
 from .models import (
     Course, CourseInstance, 
@@ -64,9 +67,17 @@ class StudentAnswerAdmin(admin.ModelAdmin):
 
 class QuizAttemptAdmin(admin.ModelAdmin):
     list_display = ('student', 'quiz', 'score', 'attempt_time')
-    list_filter = ('student', 'quiz')
+    list_filter = ('student__group', 'student', 'quiz')
 
+    def get_queryset(self, request: HttpRequest) -> QuerySet[Any]:
+        queryset = super().get_queryset(request)\
+            .select_related('student', 'quiz')\
+            .order_by('-attempt_time') \
+            .order_by('-score') \
+            .prefetch_related('student_answers__selected_answer')
 
+        return queryset
+    
 class QuestionFeedbackAdmin(admin.ModelAdmin):
     list_display = ('question', 'student', 'text')
     list_filter = ('question', 'student')

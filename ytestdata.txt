@@ -1,5 +1,5 @@
 Registration: 
-
+https://turaboydeveloper.pythonanywhere.com/api
 curl -X POST http://localhost:8000/api/register/ \
      -H "Content-Type: application/json" \
      -d '{"email": "user@example.com", "first_name": "John", "last_name": "Doe", "password": "your_secure_password", "group": 1}'
